@@ -12,3 +12,7 @@ highlight SpecialKey guifg=#4a4a59
 " handling whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
+" 2 spaces on <tab>
+set ts=2 sts=2 sw=2 expandtab
+
+
