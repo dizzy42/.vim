@@ -35,7 +35,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" highlight any text over 80 columns
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" bar at 81 columns to show when you write way too much text for something
+set colorcolumn=81
+
+" show row number on left
+set number
 
