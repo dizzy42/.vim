@@ -36,7 +36,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " bar at 81 columns to show when you write way too much text for something
-set colorcolumn=81
+set colorcolumn=101
 
 " show row number on left
 set number
