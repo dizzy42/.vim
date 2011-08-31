@@ -36,8 +36,17 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " bar at 81 columns to show when you write way too much text for something
-set colorcolumn=101
+"set colorcolumn=101
 
 " show row number on left
 set number
+
+"ruby autocomplete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+
 
