@@ -49,4 +49,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 
+" turn off those pesky sounds
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
