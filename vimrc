@@ -53,3 +53,6 @@ highlight Pmenu ctermbg=238 gui=bold
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" CommandT settings
+map <C-T> :CommandT<CR>
+let g:CommandTMaxHeight=20
