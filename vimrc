@@ -57,7 +57,11 @@ autocmd GUIEnter * set visualbell t_vb=
 map <C-T> :CommandT<CR>
 let g:CommandTMaxHeight=20
 
-" Solarized color scheme
+" solarized color scheme
 syntax enable
-set background=light
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
 colorscheme solarized

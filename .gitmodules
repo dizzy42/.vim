@@ -1,36 +1,48 @@
 [submodule "bundle/ack.vim"]
+  ignore = dirty
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/vim-ragtag"]
+  ignore = dirty
 	path = bundle/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
 [submodule "bundle/vim-rails"]
+  ignore = dirty
 	path = bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
 [submodule "bundle/vim-surround"]
+  ignore = dirty
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-unimpaired"]
+  ignore = dirty
 	path = bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/vim-fugitive"]
+  ignore = dirty
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/supertab"]
+  ignore = dirty
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "bundle/nerdtree"]
+  ignore = dirty
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/vim-nerdtree-tabs"]
+  ignore = dirty
 	path = bundle/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
 [submodule "bundle/vim-commentary"]
+  ignore = dirty
 	path = bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "bundle/vim-colors-solarized"]
+  ignore = dirty
 	path = bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/command-t"]
+  ignore = dirty
 	path = bundle/command-t
 	url = git://git.wincent.com/command-t.git
