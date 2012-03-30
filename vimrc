@@ -65,3 +65,7 @@ else
   set background=dark
 endif
 colorscheme solarized
+
+" turn off swap files
+set nobackup
+set nowritebackup
