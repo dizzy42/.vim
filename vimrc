@@ -49,23 +49,14 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 
+" jbuilder
+autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
+
 " turn off those pesky sounds
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" CommandT settings
-map <C-T> :CommandT<CR>
-let g:CommandTMaxHeight=20
-
-" solarized color scheme
-syntax enable
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
-colorscheme solarized
-
 " turn off swap files
 set nobackup
 set nowritebackup
+set noswapfile
