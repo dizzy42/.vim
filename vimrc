@@ -60,3 +60,18 @@ autocmd GUIEnter * set visualbell t_vb=
 set nobackup
 set nowritebackup
 set noswapfile
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show unicode glyphs
+
+if has('gui_macvim')
+  " MacVim
+  set guifont=Monaco\ for\ Powerline:h12
+
+  " Hide Toolbar in MacVim
+  if has("gui_running")
+    set guioptions=egmrt
+  endif
+endif
