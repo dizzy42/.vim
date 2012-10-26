@@ -1,8 +1,48 @@
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+set nocompatible               " be iMproved
+filetype off                   " required!
 
-" don't make it vi compatible
-set nocompatible
+ set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required!
+ Bundle 'gmarik/vundle'
+
+ " My Bundles here:
+ " original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-bundler.git'
+Bundle 'tpope/vim-commentary.git'
+Bundle 'tpope/vim-ragtag.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tpope/vim-unimpaired.git'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'jistr/vim-nerdtree-tabs.git'
+Bundle 'ervandew/supertab.git'
+Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'grillpanda/github-colorscheme'
+
+" Bundle 'file://.vim/bundle/vim-peepopen'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+ " " vim-scripts repos
+ " Bundle 'L9'
+ " Bundle 'FuzzyFinder'
+ " " non github repos
+ " Bundle 'git://git.wincent.com/command-t.git'
+
+ filetype plugin indent on     " required!
+ "
+ " Brief help
+ " :BundleList          - list configured bundles
+ " :BundleInstall(!)    - install(update) bundles
+ " :BundleSearch(!) foo - search(or refresh cache first) for foo
+ " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " NOTE: comments after Bundle command are not allowed..
 
 " Enable display of hidden characters
 set list
