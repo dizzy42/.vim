@@ -26,8 +26,9 @@ Bundle 'ervandew/supertab.git'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'grillpanda/github-colorscheme'
+Bundle 'roman/golden-ratio.git'
 
-" Bundle 'file://.vim/bundle/vim-peepopen'
+Bundle 'file://.vim/bundle/vim-peepopen'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
  " " vim-scripts repos
  " Bundle 'L9'
@@ -117,3 +118,10 @@ if has('gui_macvim')
     set guioptions=egmrt
   endif
 endif
+
+" set NerdTree width
+let NERDTreeWinSize = 30
+
+" Golden Ratio not automatic
+let g:golden_ratio_autocommand = 0
+nmap <C-w>- <Plug>(golden_ratio_resize)
