@@ -1,5 +1,7 @@
+let mapleader=","
 set nocompatible               " be iMproved
 filetype off                   " required!
+syntax on
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
@@ -32,8 +34,8 @@ Bundle 'grillpanda/github-colorscheme'
  " " vim-scripts repos
  " Bundle 'L9'
  " Bundle 'FuzzyFinder'
- " " non github repos
- " Bundle 'git://git.wincent.com/command-t.git'
+ " non github repos
+Bundle 'git://git.wincent.com/command-t.git'
 
  filetype plugin indent on     " required!
  "
@@ -117,3 +119,20 @@ if has('gui_macvim')
     set guioptions=egmrt
   endif
 endif
+
+" this allows quick commandt usage
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+
+" this allows for funky in current path stuff
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+" command t stuff
+let g:CommandTMaxHeight=15
+let g:CommandTMinHeight=4
