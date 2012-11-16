@@ -3,12 +3,12 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 syntax on
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
- " let Vundle manage Vundle
- " required!
- Bundle 'gmarik/vundle'
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
 
  " My Bundles here:
  " original repos on github
@@ -76,9 +76,13 @@ set hidden
 
 " map window navigation to ctl-[hjkl] instead of ctl-w [hjkl]
 map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <C-J> <C-W>j<C-W>_<C-W>12-
+map <C-K> <C-W>k<C-W>_<C-W>12-
+" nmap <C-L> <C-W>l<C-W>\|<C-W>42<
+" nmap <C-H> <C-W>h<C-W>\|<C-W>42<
 
 " bar at 81 columns to show when you write way too much text for something
 "set colorcolumn=101
@@ -123,6 +127,7 @@ endif
 
 " set NerdTree width
 let NERDTreeWinSize = 30
+map <leader>gt :NERDTreeToggle<CR>
 
 " Golden Ratio not automatic
 let g:golden_ratio_autocommand = 0
@@ -139,8 +144,16 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 " this allows for funky in current path stuff
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
-map <leader>v :view %%
 
 " command t stuff
 let g:CommandTMaxHeight=15
 let g:CommandTMinHeight=4
+
+" set winwidth=84
+" " We have to have a winheight bigger than we want to set winminheight. But if
+" " we set winheight to be huge before winminheight, the winminheight set will
+" " fail.
+" set winheight=5
+" set winminheight=5
+" set winheight=999
+
