@@ -74,6 +74,8 @@ set laststatus=2
 " allow modified files in the buffer to be hidden
 set hidden
 
+" mouse for the win
+set mouse=a
 " map window navigation to ctl-[hjkl] instead of ctl-w [hjkl]
 map <C-h> <C-w>h
 " map <C-j> <C-w>j
