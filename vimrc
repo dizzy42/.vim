@@ -28,15 +28,16 @@ Bundle 'ervandew/supertab.git'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'grillpanda/github-colorscheme'
-Bundle 'roman/golden-ratio.git'
+" Bundle 'roman/golden-ratio.git'
 
-Bundle 'file://.vim/bundle/vim-peepopen'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
- " " vim-scripts repos
+" vim-scripts repos
+Bundle 'fakeclip'
  " Bundle 'L9'
  " Bundle 'FuzzyFinder'
  " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'file://.vim/bundle/vim-peepopen'
 
  filetype plugin indent on     " required!
  "
