@@ -79,13 +79,11 @@ set hidden
 set mouse=a
 " map window navigation to ctl-[hjkl] instead of ctl-w [hjkl]
 map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-J> <C-W>j<C-W>_<C-W>12-
-map <C-K> <C-W>k<C-W>_<C-W>12-
-" nmap <C-L> <C-W>l<C-W>\|<C-W>42<
-" nmap <C-H> <C-W>h<C-W>\|<C-W>42<
+" set winheight to 70%
+let &winheight = &lines * 8 / 10
 
 " bar at 81 columns to show when you write way too much text for something
 "set colorcolumn=101
@@ -133,8 +131,8 @@ let NERDTreeWinSize = 30
 map <leader>gt :NERDTreeToggle<CR>
 
 " Golden Ratio not automatic
-let g:golden_ratio_autocommand = 0
-nmap <C-w>- <Plug>(golden_ratio_resize)
+" let g:golden_ratio_autocommand = 0
+" nmap <C-w>- <Plug>(golden_ratio_resize)
 
 " this allows quick commandt usage
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
