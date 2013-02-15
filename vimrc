@@ -28,6 +28,7 @@ Bundle 'ervandew/supertab.git'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'grillpanda/github-colorscheme'
+Bundle 'Rubytest.vim'
 " Bundle 'roman/golden-ratio.git'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -99,8 +100,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
 
-" jbuilder
+" special file types
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
+autocmd BufNewFile,BufRead *.hbs set filetype=html
 
 " turn off those pesky sounds
 set noerrorbells visualbell t_vb=
@@ -126,15 +128,15 @@ if has('gui_macvim')
   endif
 endif
 
-" set NerdTree width
+" Configuration for NERDTree
 let NERDTreeWinSize = 30
-map <leader>gt :NERDTreeToggle<CR>
+nmap <leader>e :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 
-" Golden Ratio not automatic
-" let g:golden_ratio_autocommand = 0
-" nmap <C-w>- <Plug>(golden_ratio_resize)
-
-" this allows quick commandt usage
+" command t stuff
+let g:CommandTMaxHeight=15
+let g:CommandTMinHeight=4
+map <leader>gg :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
@@ -144,11 +146,6 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 
 " this allows for funky in current path stuff
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-
-" command t stuff
-let g:CommandTMaxHeight=15
-let g:CommandTMinHeight=4
 
 " set winwidth=84
 " " We have to have a winheight bigger than we want to set winminheight. But if
