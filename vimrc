@@ -17,6 +17,7 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-bundler.git'
 Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-ragtag.git'
+Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'tpope/vim-unimpaired.git'
 Bundle 'tpope/vim-endwise.git'
@@ -26,7 +27,6 @@ Bundle 'scrooloose/nerdtree.git'
 Bundle 'jistr/vim-nerdtree-tabs.git'
 Bundle 'ervandew/supertab.git'
 Bundle 'Lokaltog/vim-powerline.git'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'grillpanda/github-colorscheme'
 Bundle 'Rubytest.vim'
 " Bundle 'roman/golden-ratio.git'
@@ -38,7 +38,6 @@ Bundle 'fakeclip'
  " Bundle 'FuzzyFinder'
  " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'file://.vim/bundle/vim-peepopen'
 
  filetype plugin indent on     " required!
  "
@@ -147,11 +146,9 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 " this allows for funky in current path stuff
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" set winwidth=84
-" " We have to have a winheight bigger than we want to set winminheight. But if
-" " we set winheight to be huge before winminheight, the winminheight set will
-" " fail.
-" set winheight=5
-" set winminheight=5
-" set winheight=999
+set hlsearch
+set splitbelow
+set splitright
 
+" Machine dependent extension for vimrc
+source ~/.vimrc.local
