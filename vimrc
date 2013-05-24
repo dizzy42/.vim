@@ -171,3 +171,4 @@ let g:clang_library_path = '/usr/local/lib/libclang.dylib'
 
 " Machine dependent extension for vimrc
 source ~/.vimrc.local
+
