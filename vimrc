@@ -29,6 +29,9 @@ Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'grillpanda/github-colorscheme'
 Bundle 'vim-scripts/nerdtree-ack.git'
 Bundle 'Rubytest.vim'
+Bundle 'eraserhd/vim-ios.git'
+Bundle 'clang-complete'
+Bundle 'cocoa.vim'
 " Bundle 'roman/golden-ratio.git'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -149,6 +152,22 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 set hlsearch
 set splitbelow
 set splitright
+
+" Disable auto completion, always <c-x> <c-o> to complete
+let g:clang_complete_auto = 0
+let g:clang_use_library = 1
+let g:clang_periodic_quickfix = 0
+let g:clang_close_preview = 1
+
+" For Objective-C, this needs to be active, otherwise multi-parameter methods won't be completed correctly
+let g:clang_snippets = 1
+
+" Snipmate does not work anymore, ultisnips is the recommended plugin
+" let g:clang_snippets_engine = 'ultisnips'
+
+" This might change depending on your installation
+let g:clang_exec = '/usr/local/bin/clang'
+let g:clang_library_path = '/usr/local/lib/libclang.dylib'
 
 " Machine dependent extension for vimrc
 source ~/.vimrc.local
