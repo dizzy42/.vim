@@ -3,6 +3,8 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 syntax on
 
+set clipboard=unnamed " * buffer for copy paste
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -14,33 +16,32 @@ Bundle 'gmarik/vundle'
  " original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-bundler.git'
+" Bundle 'tpope/vim-bundler.git'
 Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-ragtag.git'
-Bundle 'tpope/vim-repeat.git'
+" Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'tpope/vim-unimpaired.git'
 Bundle 'tpope/vim-endwise.git'
+Bundle 'tpope/vim-markdown'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'scrooloose/nerdtree.git'
-Bundle 'jistr/vim-nerdtree-tabs.git'
-Bundle 'ervandew/supertab.git'
+Bundle 'vim-scripts/nerdtree-ack.git'
+" Bundle 'jistr/vim-nerdtree-tabs.git'
+" Bundle 'ervandew/supertab.git'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'grillpanda/github-colorscheme'
-Bundle 'vim-scripts/nerdtree-ack.git'
 Bundle 'Rubytest.vim'
-Bundle 'eraserhd/vim-ios.git'
-Bundle 'clang-complete'
-Bundle 'cocoa.vim'
-" Bundle 'roman/golden-ratio.git'
-
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " vim-scripts repos
 Bundle 'fakeclip'
- " Bundle 'L9'
- " Bundle 'FuzzyFinder'
- " non github repos
+" non github repos
 Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'Rip-Rip/clang_complete'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
+Bundle 'godlygeek/tabular'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'kien/rainbow_parentheses.vim'
 
  filetype plugin indent on     " required!
  "
@@ -53,47 +54,54 @@ Bundle 'git://git.wincent.com/command-t.git'
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
-" Enable display of hidden characters
-set list
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+ " vim UI
+set backspace=indent,eol,start  " Backspace for dummies
+set linespace=0                 " No extra spaces between rows
+set nu                          " Line numbers on
+set showmatch                   " Show matching brackets/parenthesis
+set incsearch                   " Find as you type search
+set hlsearch                    " Highlight search terms
+" set winminheight=0              " Windows can be 0 line high
+set ignorecase                  " Case insensitive search
+set smartcase                   " Case sensitive when uc present
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set foldenable                  " Auto fold code
+set list                        " Enable display of hidden characters
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
+" set winheight to 70%
+let &winheight = &lines * 8 / 10
+set hlsearch
 
-" handling whitespaces
-autocmd BufWritePre * :%s/\s\+$//e
+set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set virtualedit=onemore             " Allow for cursor beyond last character
+set history=1000                    " Store a ton of history (default is 20)
+set spell                           " Spell checking on
+set hidden                          " Allow buffer switching without saving
 
+" Instead of reverting the cursor to the last position in the buffer, we
+" set it to the first line when editing a git commit message
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+
+" Formatting
 " to get proper auto indent
 filetype plugin indent on
 set autoindent
-
-" 2 spaces on <tab>
-set ts=2 sts=2 sw=2 expandtab
-
-" display status bar
-set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
-set laststatus=2
-
-" allow modified files in the buffer to be hidden
-set hidden
-
-" mouse for the win
-set mouse=a
-" map window navigation to ctl-[hjkl] instead of ctl-w [hjkl]
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-" set winheight to 70%
-let &winheight = &lines * 8 / 10
-
-" bar at 81 columns to show when you write way too much text for something
-"set colorcolumn=101
-
-" show row number on left
-set number
-
+" set nowrap                      " Wrap long lines
+set ts=2 sts=2 sw=2 expandtab   " 2 spaces on <tab>
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+set splitright                  " Puts new vsplit windows to the right of the current
+set splitbelow                  " Puts new split windows to the bottom of the current
+set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+autocmd BufWritePre * :%s/\s\+$//e " handling whitespaces
 " ruby autocomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -106,15 +114,8 @@ highlight Pmenu ctermbg=238 gui=bold
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead *.hbs set filetype=html
 
-" turn off those pesky sounds
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-" turn off swap files
-set nobackup
-set nowritebackup
-set noswapfile
-
+" display status bar
+set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
 " Powerline
 let g:Powerline_symbols = 'fancy'
 set laststatus=2   " Always show the statusline
@@ -130,10 +131,61 @@ if has('gui_macvim')
   endif
 endif
 
-" Configuration for NERDTree
-let NERDTreeWinSize = 30
-nmap <leader>e :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+" mouse for the win
+set mouse=a
+set mousehide " Hide the mouse cursor while typing
+
+" Key (re)Mappings
+" map window navigation to ctl-[hjkl] instead of ctl-w [hjkl]
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+" Wrapped lines goes down/up to next row, rather than next line in file.
+noremap j gj
+noremap k gk
+
+" Stupid shift key fixes
+if has("user_commands")
+  command! -bang -nargs=* -complete=file E e<bang> <args>
+  command! -bang -nargs=* -complete=file W w<bang> <args>
+  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+endif
+cmap Tabe tabe
+" Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Allow using the repeat operator with a visual selection (!)
+" http://stackoverflow.com/a/8064607/127816
+vnoremap . :normal .<CR>
+
+" Fix home and end keybindings for screen, particularly on mac
+" - for some reason this fixes the arrow keys too. huh.
+map [F $
+imap [F $
+map [H g0
+imap [H g0
+
+" turn off those pesky sounds
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" turn off swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
 
 " command t stuff
 let g:CommandTMaxHeight=15
@@ -149,25 +201,45 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 " this allows for funky in current path stuff
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-set hlsearch
-set splitbelow
-set splitright
+" NerdTree
+map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
 
-" Disable auto completion, always <c-x> <c-o> to complete
-let g:clang_complete_auto = 0
-let g:clang_use_library = 1
-let g:clang_periodic_quickfix = 0
-let g:clang_close_preview = 1
+let NERDTreeWinSize = 30
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
 
-" For Objective-C, this needs to be active, otherwise multi-parameter methods won't be completed correctly
-let g:clang_snippets = 1
+" Tabularize
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-" Snipmate does not work anymore, ultisnips is the recommended plugin
-" let g:clang_snippets_engine = 'ultisnips'
+" Rainbow Parantheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
-" This might change depending on your installation
-let g:clang_exec = '/usr/local/bin/clang'
-let g:clang_library_path = '/usr/local/lib/libclang.dylib'
+" Ragtag
+inoremap <M-o>       <Esc>o
+inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
 
 " Machine dependent extension for vimrc
 source ~/.vimrc.local
