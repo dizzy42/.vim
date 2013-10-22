@@ -42,6 +42,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'elixir-lang/vim-elixir'
 
  filetype plugin indent on     " required!
  "
@@ -113,6 +114,7 @@ highlight Pmenu ctermbg=238 gui=bold
 " special file types
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead *.hbs set filetype=html
+autocmd BufNewFile,BufRead *.exs set filetype=elixir
 
 " display status bar
 set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
