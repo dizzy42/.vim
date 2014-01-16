@@ -114,7 +114,9 @@ highlight Pmenu ctermbg=238 gui=bold
 " special file types
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead *.hbs set filetype=html
+autocmd BufNewFile,BufRead *.mustache set filetype=html
 autocmd BufNewFile,BufRead *.exs set filetype=elixir
+autocmd BufNewFile,BufRead *.scss set filetype=css
 
 " display status bar
 set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
