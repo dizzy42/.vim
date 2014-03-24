@@ -1,4 +1,4 @@
-let mapleader=","
+let mapleader="\<space>"
 set nocompatible               " be iMproved
 filetype off                   " required!
 syntax on
@@ -246,6 +246,38 @@ au Syntax * RainbowParenthesesLoadBraces
 inoremap <M-o>       <Esc>o
 inoremap <C-j>       <Down>
 let g:ragtag_global_maps = 1
+
+" BEGIN Super hotness
+" http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
+nnoremap <CR> G
+nnoremap <BS> gg
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+" END Super hotness
 
 " Machine dependent extension for vimrc
 source ~/.vimrc.local
