@@ -5,57 +5,59 @@ syntax on
 
 set clipboard=unnamed " * buffer for copy paste
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
- " My Bundles here:
+ " My Plugins here:
  " original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails.git'
-" Bundle 'tpope/vim-bundler.git'
-Bundle 'tpope/vim-commentary.git'
-Bundle 'tpope/vim-ragtag.git'
-" Bundle 'tpope/vim-repeat.git'
-Bundle 'tpope/vim-surround.git'
-Bundle 'tpope/vim-unimpaired.git'
-Bundle 'tpope/vim-endwise.git'
-Bundle 'tpope/vim-markdown'
-" Bundle 'tpope/vim-vinegar'
-Bundle 'mileszs/ack.vim.git'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'vim-scripts/nerdtree-ack.git'
-" Bundle 'jistr/vim-nerdtree-tabs.git'
-" Bundle 'ervandew/supertab.git'
-Bundle 'Lokaltog/vim-powerline.git'
-Bundle 'grillpanda/github-colorscheme'
-Bundle 'Rubytest.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails.git'
+" Plugin 'tpope/vim-bundler.git'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'tpope/vim-ragtag.git'
+" Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-unimpaired.git'
+Plugin 'tpope/vim-endwise.git'
+Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-vinegar'
+Plugin 'mileszs/ack.vim.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'vim-scripts/nerdtree-ack.git'
+" Plugin 'jistr/vim-nerdtree-tabs.git'
+" Plugin 'ervandew/supertab.git'
+" Plugin 'Lokaltog/vim-powerline.git'
+Plugin 'grillpanda/github-colorscheme'
+" Plugin 'Rubytest.vim'
 " vim-scripts repos
-Bundle 'fakeclip'
-Bundle 'kien/ctrlp.vim'
+Plugin 'fakeclip'
+Plugin 'kien/ctrlp.vim'
 " non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" Bundle 'Rip-Rip/clang_complete'
-" Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'godlygeek/tabular'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'elixir-lang/vim-elixir'
+" Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'Rip-Rip/clang_complete'
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'bling/vim-airline'
 
- filetype plugin indent on     " required!
+call vundle#end()            " required
+filetype plugin indent on     " required!
  "
  " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+ " :PluginList          - list configured bundles
+ " :PluginInstall(!)    - install(update) bundles
+ " :PluginSearch(!) foo - search(or refresh cache first) for foo
+ " :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
  "
  " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+ " NOTE: comments after Plugin command are not allowed..
 
  " vim UI
 set backspace=indent,eol,start  " Backspace for dummies
@@ -81,6 +83,7 @@ highlight SpecialKey guifg=#4a4a59
 " set winheight to 70%
 let &winheight = &lines * 8 / 10
 set hlsearch
+set lazyredraw
 
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
@@ -119,12 +122,13 @@ autocmd BufNewFile,BufRead *.hbs set filetype=html
 autocmd BufNewFile,BufRead *.mustache set filetype=html
 autocmd BufNewFile,BufRead *.exs set filetype=elixir
 autocmd BufNewFile,BufRead *.scss set filetype=css
+autocmd BufNewFile,BufRead *.pm set filetype=perl
 
 " display status bar
-set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
+" set statusline=[%02n]%y\ %f\ %(\[%M%R%H]%)\ %{fugitive#statusline()\ }%=\ %4l,%02c%2V\ %P%*
 " Powerline
-let g:Powerline_symbols = 'fancy'
-set laststatus=2   " Always show the statusline
+" let g:Powerline_symbols = 'fancy'
+" set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
 
 if has('gui_macvim')
@@ -191,18 +195,6 @@ autocmd GUIEnter * set visualbell t_vb=
 set nobackup
 set nowritebackup
 set noswapfile
-
-
-" command t stuff
-let g:CommandTMaxHeight=15
-let g:CommandTMinHeight=4
-map <leader>gg :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
-map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
 
 " this allows for funky in current path stuff
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
